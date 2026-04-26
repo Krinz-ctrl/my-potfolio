@@ -1,0 +1,367 @@
+/* ==============================
+   GLOBAL
+============================== */
+body {
+  margin: 0;
+  background: #111;
+  font-family: "Pixelify Sans", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* smoother rendering */
+* {
+  box-sizing: border-box;
+}
+
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* ==============================
+   DESKTOP (LEFT ICONS)
+============================== */
+.desktop {
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: white;
+  z-index: 10;
+}
+
+/* ==============================
+   ICON
+============================== */
+.icon {
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.icon img {
+  width: 90px;
+  transition: all 0.25s ease;
+  filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.4));
+}
+
+/* ✨ hover physics */
+.icon:hover img {
+  transform: translateY(-8px) scale(1.1);
+}
+
+.icon:active img {
+  transform: scale(0.95);
+}
+
+.icon p {
+  margin-top: 6px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  transition: 0.2s;
+}
+
+.icon:hover p {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* ==============================
+   DOCK
+============================== */
+.dock {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 20px;
+
+  padding: 14px 25px;
+  border-radius: 25px;
+
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.dock img {
+  width: 55px;
+  transition: all 0.25s ease;
+}
+
+/* macOS style hover */
+.dock img:hover {
+  transform: scale(1.4) translateY(-10px);
+}
+
+/* ==============================
+   WINDOW
+============================== */
+.titlebar {
+  background: linear-gradient(180deg, #a63b36, #7d2a25);
+  color: white;
+
+  padding: 10px 15px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 18px;
+  letter-spacing: 1px;
+  cursor: grab;
+  touch-action: none;
+}
+
+.titlebar:active {
+  cursor: grabbing;
+}
+
+/* close button */
+.close {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.2);
+}
+
+/* ==============================
+   CONTENT
+============================== */
+.content {
+  padding: 20px;
+  color: white;
+  font-size: 16px;
+}
+
+.about-me {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  line-height: 1.7;
+}
+
+.about-text {
+  max-width: 560px;
+}
+
+.about-text p {
+  margin: 0 0 18px;
+}
+
+.about-dev-image {
+  width: 150px;
+  max-width: 32%;
+  height: auto;
+  flex-shrink: 0;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
+.contact-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+}
+
+.contact-left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 420px;
+  padding-top: 18px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.contact-left a {
+  color: white;
+  text-decoration: none;
+  width: fit-content;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.contact-left a:hover {
+  color: #ffe8a3;
+  transform: translateX(4px);
+}
+
+.contact-status {
+  margin: 0 0 12px;
+  color: #ffe8a3;
+  font-size: 20px;
+}
+
+.resume-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  color: #7d2a25;
+  background: #fff2bf;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.resume-button:hover {
+  background: white;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+  transform: translateY(-2px);
+}
+
+.resume-button:active {
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.3);
+  transform: translateY(1px);
+}
+
+/* ==============================
+   CLOCK
+============================== */
+.clock {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+
+  font-size: 55px;
+  color: white;
+
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+
+  padding: 10px 20px;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+
+  transition: all 0.3s ease;
+}
+
+/* subtle pulse */
+.clock:hover {
+  transform: scale(1.05);
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 768px) {
+  .icon img {
+    width: 70px;
+  }
+
+  .dock img {
+    width: 45px;
+  }
+
+  .clock {
+    font-size: 35px;
+  }
+
+  .about-me {
+    gap: 16px;
+  }
+
+  .about-dev-image {
+    width: 110px;
+  }
+
+  .contact-left {
+    padding-top: 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  .icon img {
+    width: 55px;
+  }
+
+  .dock {
+    gap: 10px;
+    padding: 10px 15px;
+  }
+
+  .dock img {
+    width: 35px;
+  }
+
+  .clock {
+    font-size: 28px;
+  }
+
+  .about-me {
+    flex-direction: column-reverse;
+  }
+
+  .about-dev-image {
+    align-self: flex-end;
+    max-width: 45%;
+  }
+
+  .resume-button {
+    left: 0;
+    right: auto;
+  }
+}
+.icon,
+.titlebar,
+.dock,
+.close,
+.clock {
+  user-select: none;
+  -webkit-user-select: none;
+}
+.window {
+  position: fixed;
+  z-index: 100;
+
+  width: 90vw;
+  max-width: 800px;
+  height: 70vh;
+
+  background: rgba(201, 75, 69, 0.95);
+  border: 3px solid #8f2c27;
+  border-radius: 10px;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+
+  overflow: hidden;
+  will-change: left, top;
+}
