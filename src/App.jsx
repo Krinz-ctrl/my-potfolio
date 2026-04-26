@@ -12,7 +12,7 @@ function App() {
   const [activeWindow, setActiveWindow] = useState(null);
 
   return (
-    <>
+    <main className="app-shell">
       <BackgroundVideo />
       <Desktop setActiveWindow={setActiveWindow} />
       <Dock />
@@ -71,7 +71,7 @@ function App() {
       >
         <Contact />
       </Window>
-    </>
+    </main>
   );
 }
 
